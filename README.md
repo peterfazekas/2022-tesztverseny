@@ -43,7 +43,8 @@ A képernyőn megjelenő üzenetek az adott környezet nyelvi sajátosságainak 
    hogy nem kerül sor mindegyik díj kiadására. Írassa ki a mintának megfelelően a képernyőre
    a díjazottak kódját és pontszámát pontszám szerint csökkenő sorrendben! 
 
-*Minta a szöveges kimenetek kialakításához:*
+**Minta a szöveges kimenetek kialakításához:**
+
 (A képernyőre írt üzeneteknek tartalmilag meg kell felelniük az alábbi mintának.
 Képernyőre írást nem igénylő feladatok esetén nem szükséges a feladat számát sem kiíratnia.)
 
@@ -57,11 +58,10 @@ BXCDBBACACADBC (a versenyző válasza)
 
 4. feladat:
 BCCCDBBBBCDAAA (a helyes megoldás)
-+ + + + (a versenyző helyes válaszai)
++ +  +   +     (a versenyző helyes válaszai)
 
 5. feladat: A feladat sorszáma = 10
-A feladatra 111 fő, a versenyzők 36,63%-a adott helyes
-választ.
+A feladatra 111 fő, a versenyzők 36,63%-a adott helyes választ.
 
 6. feladat: A versenyzők pontszámának meghatározása
 
