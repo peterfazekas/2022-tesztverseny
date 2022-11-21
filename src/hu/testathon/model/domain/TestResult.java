@@ -17,4 +17,8 @@ public class TestResult {
     public String getAnswers() {
         return answers;
     }
+
+    public boolean isCompetitor(String id) {
+        return this.id.equals(id);
+    }
 }
