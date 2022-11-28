@@ -1,9 +1,13 @@
 package hu.testathon.controller;
 
+import hu.testathon.model.domain.FinalResult;
 import hu.testathon.model.domain.TestResult;
 import hu.testathon.model.domain.TestValidator;
 
+import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class TestService {
 
@@ -63,4 +67,54 @@ public class TestService {
                 .count();
     }
 
+    /**
+     * 6. feladat:
+     */
+    public List<String> getScores() {
+        return createFinalResults().stream()
+                .map(FinalResult::toString)
+                .collect(Collectors.toList());
+    }
+
+    private List<FinalResult> createFinalResults() {
+        return testResults.stream()
+                .map(this::createFinalResult)
+                .collect(Collectors.toList());
+    }
+
+    private FinalResult createFinalResult(TestResult testResult) {
+        int score = testValidator.calculateScore(testResult.getAnswers());
+        return new FinalResult(testResult.getId(), score);
+    }
+
+    /**
+     * 7. feladat
+     */
+    public String getOrderedResult() {
+        return createOrderedFinalResults().stream()
+                .filter(i -> i.getOrder() <= 3)
+                .map(FinalResult::printOrder)
+                .collect(Collectors.joining("\n"));
+    }
+
+    private List<FinalResult> createOrderedFinalResults() {
+        List<FinalResult> sortedFinalResults = createSortedFinalResults();
+        List<FinalResult> orderedFinalResults = new ArrayList<>();
+        int prevOrder = 0, prevScore = 0;
+        for (FinalResult finalResult: sortedFinalResults) {
+            int order = finalResult.getScore() == prevScore
+                ? prevOrder
+                : prevOrder + 1;
+            orderedFinalResults.add(new FinalResult(finalResult, order));
+            prevOrder = order;
+            prevScore = finalResult.getScore();
+        }
+        return orderedFinalResults;
+    }
+
+    private List<FinalResult> createSortedFinalResults() {
+        return createFinalResults().stream()
+                .sorted((i, j) -> j.getScore().compareTo(i.getScore()))
+                .collect(Collectors.toList());
+    }
 }
